@@ -1,0 +1,66 @@
+{% extends "base_community.html" %}
+
+{% block extrahead %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss/community/" />
+<style type="text/css" media="screen">
+  h5 { margin-top: 5px; }
+  #content-main .module { width: 350px; float: left; display: inline;}
+  #content-main .first { margin-left: 20px; }
+  #content-main .last { margin-right: 5px; }
+  .hidden { display: none; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1>Community</h1>
+<h2 class="deck">This page, updated every hour, aggregates blog entries by people who are
+writing about Django.</h2>
+
+
+<ul class="twitter carousel">
+  <li>holy crap django-autoslug just saved the day! http://bit.ly/c2cmTN (expand) #django by <a href="#">Tom Wolber</a></li>
+  <li class="hidden">holy crap django-autoslug just saved the day! http://bit.ly/c2cmTN (expand) #django by <a href="#">Tom Wolber</a></li>
+  <li class="hidden">holy crap django-autoslug just saved the day! http://bit.ly/c2cmTN (expand) #django by <a href="#">Tom Wolber</a></li>
+  <li class="hidden">holy crap django-autoslug just saved the day! http://bit.ly/c2cmTN (expand) #django by <a href="#">Tom Wolber</a></li>
+  <li class="hidden">holy crap django-autoslug just saved the day! http://bit.ly/c2cmTN (expand) #django by <a href="#">Tom Wolber</a></li>
+  <li class="hidden">holy crap django-autoslug just saved the day! http://bit.ly/c2cmTN (expand) #django by <a href="#">Tom Wolber</a></li>
+</ul>
+
+<div id="blogs" class="module first">
+  <h3 class="header">Recent Blog Posts</h3>
+  {% for article in article_list %}
+  <h5><a href="{{ article.callback_url }}">{{ article.name }}</a></h5>
+  <p class='date'>{{ article.date|date:"N jS, Y \a\t P" }} by <a href="{{ article.source_url }}">{{ article.source }}</a></p>
+  {% endfor %}
+</div>
+
+<div class="module last" id="jobs">
+  <h3 class="header">Recently Posted Jobs</h3>
+  {% for article in article_list %}
+  <h5><a href="{{ article.callback_url }}">{{ article.name }}</a></h5>
+  <p class='date'>{{ article.date|date:"N jS, Y \a\t P" }} by <a href="{{ article.source_url }}">{{ article.source }}</a></p>
+  {% endfor %}
+</div>
+<hr style="clear: both; display: block; border: none; background-color: white; color: white;" />
+<div class="module" id="pypi">
+  <h3 class="header">Recently On PyPi</h3>
+  {% for package in pypi_list %}
+  <h5><a href="{{ package.callback_url }}">{{ package.name }}</a></h5>
+  <p>{{ package.description }}</p>
+  {% endfor %}
+</div>
+
+<div class="module" id="elsewhere">
+  <h3 class="header">Recently External Development</h3>
+  {% for article in article_list %}
+  <h5><a href="{{ article.callback_url }}">{{ article.name }}</a></h5>
+  <p class='date'>{{ article.date|date:"N jS, Y \a\t P" }} by <a href="{{ article.source_url }}">{{ article.source }}</a></p>
+  {% endfor %}
+</div>
+
+<div id="content-secondary">
+{% if has_next %}<a href="?page={{ next }}">Earlier posts</a>{% endif %}</p>
+</div>
+
+{% endblock %}

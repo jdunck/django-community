@@ -1,0 +1,68 @@
+{% extends "base_3col.html" %}
+
+{% block cssid %}homepage{% endblock %}
+
+{% block sectionid %}homepage{% endblock %}
+
+{% block billboard %}<h2>The Web framework for perfectionists (with deadlines). Django makes it easier to build better Web apps more quickly and with less code.</h2>{% endblock %}
+
+{% block content %}
+<h1>Meet Django</h1>
+<h2 class="deck">Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.</h2>
+<p>Developed four years ago by a fast-moving online-news operation, Django was designed to handle two challenges: the intensive deadlines of a newsroom and the stringent requirements of the experienced Web developers who wrote it. It lets you build high-performing, elegant Web applications quickly.</p>
+<p>Django focuses on automating as much as possible and adhering to the <a href="http://c2.com/cgi/wiki?DontRepeatYourself"><abbr title="Don't Repeat Yourself">DRY</abbr> principle</a>.</p>
+<p>Dive in by <a href="http://docs.djangoproject.com/en/dev/intro/overview/">reading the overview &rarr;</a></p>
+<p>When you're ready to code, read the <a href="http://docs.djangoproject.com/en/dev/intro/install/">installation guide</a> and <a href="http://docs.djangoproject.com/en/dev/intro/tutorial01/">tutorial</a>.</p>
+<div id="content-secondary">
+	<h2>The Django framework</h2>
+	<h3>Object-relational mapper</h3>
+	<p>Define your <a href="http://docs.djangoproject.com/en/dev/topics/db/models/">data models</a> entirely in Python. You get a rich, <a href="http://docs.djangoproject.com/en/dev/topics/db/queries/">dynamic database-access API</a> for free &mdash; but you can still write SQL if needed.</p>
+	<h3>Automatic admin interface</h3>
+	<p>Save yourself the tedious work of creating interfaces for people to add and update content. <a href="http://docs.djangoproject.com/en/dev/intro/tutorial02/">Django does that automatically</a>, and it's production-ready.</p>
+	<h3>Elegant URL design</h3>
+	<p>Design pretty, <a href="http://docs.djangoproject.com/en/dev/topics/http/urls/">cruft-free URLs</a> with no framework-specific limitations. Be as flexible as you like.</p>
+	<h3>Template system</h3>
+	<p>Use Django's powerful, extensible and designer-friendly <a href="http://docs.djangoproject.com/en/dev/topics/templates/">template language</a> to separate design, content and Python code.</p>
+	<h3>Cache system</h3>
+	<p>Hook into memcached or other cache frameworks for <a href="http://docs.djangoproject.com/en/dev/topics/cache/">super performance</a> &mdash; caching is as granular as you need.</p>
+        <h3>Internationalization</h3>
+        <p>Django has full support for <a href="http://docs.djangoproject.com/en/dev/topics/i18n/">multi-language applications</a>, letting you specify translation strings and providing hooks for language-specific functionality.</p>
+</div>
+<!-- END #content-secondary -->
+{% endblock %}
+
+{% block content-related %}
+
+<h2>Download</h2>
+<ul class="linklist">
+    <li class="button-download"><a href="/download/">Latest release: <strong>1.1.1</strong></a></li>
+</ul>
+<p>Open source, <a href="http://code.djangoproject.com/browser/django/trunk/LICENSE">BSD license</a></p>
+<h2>Documentation</h2>
+<ul class="linklist">
+	<li><a href="http://docs.djangoproject.com/en/dev/intro/install/">Installation guide</a></li>
+	<li><a href="http://docs.djangoproject.com/en/dev/intro/tutorial01/">Tutorial</a></li>
+	<li><a href="http://docs.djangoproject.com/">Full index...</a></li>
+</ul>
+<h2>Sites that use Django</h2>
+<dl>
+    <dt><a href="http://www.lawrence.com/">lawrence.com</a></dt>
+    <dd>An internationally renowned local-entertainment site with events, stories, bands, drink specials and more.</dd>
+    <dt><a href="http://projects.washingtonpost.com/congress/">washingtonpost.com</a></dt>
+    <dd>The Washington Post's growing selection of innovative Web database applications.</dd>
+	<dt><a href="http://www.everyblock.com/">EveryBlock</a></dt>
+	<dd>A news feed for your block.</dd>
+	<dt><a href="http://www.ljworld.com/">LJWorld.com</a></dt>
+	<dd>An industry-leading newspaper site.</dd>
+    <dt><a href="http://www.tabblo.com/">Tabblo</a></dt>
+    <dd>An innovative photo-sharing site, with a narrative twist.</dd>
+	<dt><a href="http://www.torontolife.com/">Toronto Life</a></dt>
+	<dd>Toronto's city magazine.</dd>
+</dl>
+<p><a href="http://code.djangoproject.com/wiki/DjangoPoweredSites">See more sites...</a></p>
+{% endblock %}
+
+{% block content-extra %}
+<h2>Weblog</h2>
+{% load weblog %}{% render_latest_blog_entries 4 %}
+{% endblock %}
