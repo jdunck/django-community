@@ -1,10 +1,18 @@
 from django.db import models
 
+class FeedType(models.Model):
+    name = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250)
+
+    def __unicode__(self):
+        return "%s" % (self.name,)
+
 class Feed(models.Model):
     title = models.CharField(max_length=500)
     feed_url = models.URLField(unique=True, max_length=500)
     public_url = models.URLField(max_length=500)
     is_defunct = models.BooleanField()
+    feed_type = models.ForeignKey(FeedType)
 
     class Meta:
         db_table = 'aggregator_feeds'
