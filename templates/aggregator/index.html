@@ -1,0 +1,65 @@
+{% extends "base_community.html" %}
+
+{% block extrahead %}
+<link rel="alternate" type="application/rss+xml" title="RSS" href="/rss/community/" />
+<style type="text/css" media="screen">
+  h5 { margin-top: 5px; }
+  #content-main .module { width: 350px; float: left; display: inline;}
+  #content-main .first { margin-left: 20px; }
+  #content-main .last { margin-right: 5px; }
+  .hidden { display: none; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<h1>Community</h1>
+<h2 class="deck">This page, updated every hour, aggregates blog entries by people who are
+writing about Django.</h2>
+
+
+<ul class="twitter carousel">
+  {% for tweet in twitter_list|slice:":20" %}
+  {% autoescape off %}
+  <li {% if not forloop.first %}class="hidden"{% endif %}>{{ tweet.summary }}</li>
+  {% endautoescape %}
+  {% endfor %}
+</ul>
+
+<div id="blogs" class="module first">
+  <h3 class="header">Recent Blog Posts</h3>
+  {% for article in article_list|slice:":5" %}
+  <h5><a href="{{ article.link }}">{{ article.title }}</a></h5>
+  <p class='date'>{{ article.date_modified|date:"N jS, Y \a\t P" }} by <a href="{{ article.feed.public_url }}">{{ article.feed.title }}</a></p>
+  {% endfor %}
+</div>
+
+<div class="module last" id="jobs">
+  <h3 class="header">Recently Posted Jobs</h3>
+  {% for job in job_list|slice:":5" %}
+  <h5><a href="{{ job.link }}">{{ job.title }}</a></h5>
+  <p class='date'>{{ job.date_modified|date:"N jS, Y \a\t P" }} by <a href="{{ job.feed.public_url }}">{{ job.feed.title }}</a></p>
+  {% endfor %}
+</div>
+<hr style="clear: both; display: block; border: none; background-color: white; color: white;" />
+<div class="module" id="pypi">
+  <h3 class="header">Recently On PyPi</h3>
+  {% for package in pypi_list|slice:":5" %}
+  <h5><a href="{{ package.link }}">{{ package.title }}</a></h5>
+  <p>{{ package.summary }}</p>
+  {% endfor %}
+</div>
+
+<div class="module" id="elsewhere">
+  <h3 class="header">Recently External Development</h3>
+  {% for project in external_dev_list|slice:":5" %}
+  <h5><a href="{{ project.link }}">{{ project.feed.title }}</a></h5>
+  <p>{{ project.title }}</p>
+  {% endfor %}
+</div>
+
+<div id="content-secondary">
+{% if has_next %}<a href="?page={{ next }}">Earlier posts</a>{% endif %}</p>
+</div>
+
+{% endblock %}
