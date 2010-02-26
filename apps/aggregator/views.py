@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from apps.aggregator.models import FeedItem, Feed, FeedType
 
-def community_index(request):
+def index(request):
     item_list = FeedItem.objects.all()
     articles = item_list.filter(feed__feed_type__slug='articles')
     jobs = item_list.filter(feed__feed_type__slug='jobs')
