@@ -49,4 +49,17 @@ urlpatterns = patterns('',
     (r'', include('django.contrib.flatpages.urls')),
 )
 
+if settings.DEBUG:
+    urlpatterns += patterns("django.views",
+        url(r"^css/(?P<path>.*)", "static.serve", {
+            "document_root": settings.MEDIA_ROOT,
+        }),
+        url(r"^js/(?P<path>.*)", "static.serve", {
+            "document_root": settings.MEDIA_ROOT,
+        }),
+        url(r"^img/(?P<path>.*)", "static.serve", {
+            "document_root": settings.MEDIA_ROOT,
+        }),
+                            
+    )
 admin.autodiscover()
