@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 from apps.aggregator.models import FeedItem, Feed, FeedType
+from apps.aggregator.forms import FeedModelForm
 
 def index(request):
     item_list = FeedItem.objects.all()
@@ -16,3 +18,15 @@ def index(request):
                                'external_dev_list': external_dev,
                                'twitter_list': twitter,
                               })
+
+@login_required
+def add_feed(request, feed_type_slug):
+    import pdb; pdb.set_trace() # FIXME
+    initial_data = {'feed_type': FeedType.objects.get(slug=feed_type_slug)}
+    f = FeedModelForm(request.POST or None, initial=initial_data)
+    if f.is_valid():
+        # success
+        pass
+    else:
+        return render_to_response('community/add_feed.html',
+                                  {'form':f})
