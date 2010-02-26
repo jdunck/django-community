@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from apps.aggregator.models import FeedItem, Feed, FeedType
 from apps.aggregator.forms import FeedModelForm
 
@@ -21,12 +23,15 @@ def index(request):
 
 @login_required
 def add_feed(request, feed_type_slug):
-    import pdb; pdb.set_trace() # FIXME
-    initial_data = {'feed_type': FeedType.objects.get(slug=feed_type_slug)}
+    initial_data = {'feed_type': FeedType.objects.get(slug=feed_type_slug).id}
     f = FeedModelForm(request.POST or None, initial=initial_data)
     if f.is_valid():
-        # success
-        pass
+        if f.save():
+            return HttpResponseRedirect(reverse('community-index'))
+        else:
+            # not sure when this happens.
+            return render_to_response('aggregator/add_feed.html',
+                                      {'form':f})
     else:
-        return render_to_response('community/add_feed.html',
+        return render_to_response('aggregator/add_feed.html',
                                   {'form':f})
