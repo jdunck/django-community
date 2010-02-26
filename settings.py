@@ -19,6 +19,9 @@ if DEVELOPMENT_MODE:
     CACHE_BACKEND = "dummy:///"
     DJANGO_SVN_ROOT = "http://code.djangoproject.com/svn/django/"
     ADMIN_MEDIA_PREFIX = '/media/'
+    # FIXME: Really need to pull in actual media to serve so we can do this offline.
+    MEDIA_ROOT = "/home/html/djangoproject.com/m/"
+    MEDIA_URL = "http://media.djangoproject.com.com/m/"
 else:
     DEBUG = False
     PREPEND_WWW = True
@@ -27,6 +30,8 @@ else:
     TEMPLATE_DIRS = ['/home/djangoproject.com/django_website/templates']
     DJANGO_SVN_ROOT = "file:///home/svn/django/django/"
     ADMIN_MEDIA_PREFIX = 'http://media.djangoproject.com/admin/'
+    MEDIA_ROOT = "/home/html/djangoproject.com/m/"
+    MEDIA_URL = "http://media.djangoproject.com.com/m/"
 
 SITE_ID = 1
 ROOT_URLCONF = 'django_website.urls'
@@ -44,11 +49,8 @@ INSTALLED_APPS = (
     'django_website.apps.blog',
     'django_website.apps.docs',
     'django_website.apps.aggregator',
-    'django_website.apps.community',
     'registration',
 )
-MEDIA_ROOT = "/home/html/djangoproject.com/m/"
-MEDIA_URL = "http://www.djangoproject.com.com/m/"
 
 # setting for documentation root path
 DJANGO_DOCUMENT_ROOT_PATH = "/home/html/djangoproject.com/docs/"
@@ -61,7 +63,6 @@ CACHE_MIDDLEWARE_GZIP = True
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',
-    'django.middleware.http.SetRemoteAddrFromForwardedFor',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
