@@ -6,6 +6,7 @@
   #content-main .module { width: 350px; float: left; display: inline;}
   #content-main .first { margin-left: 20px; }
   #content-main .last { margin-right: 5px; }
+  #add_feed_form label { display: block; width: 75px; float: left; } 
   .hidden { display: none; }
 </style>
 {% endblock %}
@@ -14,7 +15,7 @@
 
 <h1>Community</h1>
 
-<form method="POST" action="">
+<form method="POST" action="" id="add_feed_form">
   {{ form.as_p }}
   <input type="submit" name="submit" value="Add Feed" />
 </form>
