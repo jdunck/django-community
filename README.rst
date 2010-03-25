@@ -53,3 +53,5 @@ Run the Server:
 ::
 
     python manage.py runserver
+
+Visit http://localhost:8000/community/
