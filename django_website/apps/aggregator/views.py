@@ -13,6 +13,7 @@ def index(request):
     pypi = item_list.filter(feed__feed_type__slug='pypi')
     external_dev = item_list.filter(feed__feed_type__slug='external-dev')
     twitter = item_list.filter(feed__feed_type__slug='twitter')
+    feedtype_list = FeedType.objects.all()
 
     return render_to_response('aggregator/index.html',
                               {'article_list': articles,
@@ -20,6 +21,7 @@ def index(request):
                                'pypi_list':pypi,
                                'external_dev_list': external_dev,
                                'twitter_list': twitter,
+                               'feedtype_list': feedtype_list,
                               })
 
 def feed_list(request, feed_type_slug):
