@@ -15,7 +15,7 @@
   <h5><a href="{{ item.link }}">{{ item.title }}</a></h5>
   <p class="date">{{ item.date_modified|date:"N jS, Y \a\t P" }} by <a href="{{ item.feed.public_url }}">{{ item.feed.title }}</a></p>
   {% endfor %}
-  <p style="padding-left: 10px;"><a href="{% url community-feed-list feedtype.slug %}">View more</a>{% if feedtype.can_self_add %}or <a href="{% url community-add-feed feedtype.slug %}">Add your feed</a>{% endif %}</p>
+  <p style="padding-left: 10px;"><a href="{% url community-feed-list feedtype.slug %}">View more</a>{% if feedtype.can_self_add %} or <a href="{% url community-add-feed feedtype.slug %}">Add your feed</a>{% endif %}</p>
 </div>
 {% endfor %}
 
