@@ -20,8 +20,9 @@ if DEVELOPMENT_MODE:
     DJANGO_SVN_ROOT = "http://code.djangoproject.com/svn/django/"
     ADMIN_MEDIA_PREFIX = '/media/'
     # FIXME: Really need to pull in actual media to serve so we can do this offline.
+    MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "media")
     MEDIA_ROOT = "/home/html/djangoproject.com/m/"
-    MEDIA_URL = "http://media.djangoproject.com.com/m/"
+    MEDIA_URL = "/media/"
 else:
     DEBUG = False
     PREPEND_WWW = True
