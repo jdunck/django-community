@@ -3,6 +3,7 @@ from django.db import models
 class FeedType(models.Model):
     name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
+    can_self_add = models.BooleanField(default=True)
 
     def __unicode__(self):
         return "%s" % (self.name,)

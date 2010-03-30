@@ -23,7 +23,8 @@ def feed_type_list(request):
 
 @login_required
 def add_feed(request, feed_type_slug):
-    initial_data = {'feed_type': FeedType.objects.get(slug=feed_type_slug).id}
+    ft = get_object_or_404(FeedType, slug=feed_type_slug, can_self_add=True)
+    initial_data = {'feed_type': ft.id}
     f = FeedModelForm(request.POST or None, initial=initial_data)
     if f.is_valid():
         if f.save():
