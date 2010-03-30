@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -7,22 +8,10 @@ from apps.aggregator.models import FeedItem, Feed, FeedType
 from apps.aggregator.forms import FeedModelForm
 
 def index(request):
-    item_list = FeedItem.objects.all()
-    articles = item_list.filter(feed__feed_type__slug='articles')
-    jobs = item_list.filter(feed__feed_type__slug='jobs')
-    pypi = item_list.filter(feed__feed_type__slug='pypi')
-    external_dev = item_list.filter(feed__feed_type__slug='external-dev')
-    twitter = item_list.filter(feed__feed_type__slug='twitter')
     feedtype_list = FeedType.objects.all()
-
     return render_to_response('aggregator/index.html',
-                              {'article_list': articles,
-                               'job_list':jobs,
-                               'pypi_list':pypi,
-                               'external_dev_list': external_dev,
-                               'twitter_list': twitter,
-                               'feedtype_list': feedtype_list,
-                              })
+                              {'feedtype_list': feedtype_list},
+                              context_instance=RequestContext(request))
 
 def feed_list(request, feed_type_slug):
     feed_type = get_object_or_404(FeedType, slug=feed_type_slug)
