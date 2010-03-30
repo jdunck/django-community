@@ -7,6 +7,9 @@ class FeedType(models.Model):
     def __unicode__(self):
         return "%s" % (self.name,)
 
+    def items(self):
+        return FeedItem.objects.filter(feed__feed_type=self)
+
 class Feed(models.Model):
     title = models.CharField(max_length=500)
     feed_url = models.URLField(unique=True, max_length=500)
