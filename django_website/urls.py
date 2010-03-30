@@ -54,20 +54,18 @@ urlpatterns = patterns('',
     (r'^sitemap\.xml$', cache_page(sitemap_views.sitemap, 60 * 60 * 6), {'sitemaps': sitemaps}),
     (r'^weblog/', include('django_website.apps.blog.urls')),
     (r'^freenode\.9xJY7YIUWtwn\.html$', 'django.views.generic.simple.direct_to_template', {'template': 'freenode_tmp.html'}),
+)
+
+if settings.DEVELOPMENT_MODE:
+    urlpatterns += patterns("django.views",
+        url(r"^media/(?P<path>.*)", "static.serve", {
+            "document_root": settings.MEDIA_ROOT,
+        }),
+    )
+
+urlpatterns += patterns('',
+    # flatpages need to be last b/c they match anything
     (r'', include('django.contrib.flatpages.urls')),
 )
 
-if settings.DEBUG:
-    urlpatterns += patterns("django.views",
-        url(r"^css/(?P<path>.*)", "static.serve", {
-            "document_root": settings.MEDIA_ROOT,
-        }),
-        url(r"^js/(?P<path>.*)", "static.serve", {
-            "document_root": settings.MEDIA_ROOT,
-        }),
-        url(r"^img/(?P<path>.*)", "static.serve", {
-            "document_root": settings.MEDIA_ROOT,
-        }),
-                            
-    )
 admin.autodiscover()
