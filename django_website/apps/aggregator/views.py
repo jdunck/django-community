@@ -32,7 +32,9 @@ def add_feed(request, feed_type_slug):
         else:
             # not sure when this happens.
             return render_to_response('aggregator/add_feed.html',
-                                      {'form':f})
+                                      {'form':f},
+                                      context_instance=RequestContext(request))
     else:
         return render_to_response('aggregator/add_feed.html',
-                                  {'form':f})
+                                  {'form':f},
+                                  context_instance=RequestContext(request))
